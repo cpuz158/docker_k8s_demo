@@ -1,0 +1,15 @@
+docker run -d -p 80 tutum/hello-world
+5532f9ddd24eaa2cea26a2d9948cc1469dafa9cdc40ba9a172f44e6f4cb715f5
+
+docker port [container_id] 80
+80/tcp -> 0.0.0.0:32774
+
+curl [host-ip] 32774
+
+docker stop $(docker ps -q) && echo '- stopped' && docker rm $(docker ps -a -q) && echo '- removed'
+3a13d3b43d55
+- stopped
+3a13d3b43d55
+- removed
+
+docker rmi -f $(docker images | grep -E "*busy*|*hello-world*" | awk '{print $1":"$2}')
